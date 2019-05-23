@@ -15,10 +15,10 @@
 #define KC_PC_COPY LCTL(KC_C)
 #define KC_PC_PASTE LCTL(KC_V)
 
-#define OS_TILDE RALT(RSFT(KC_GRAVE))
-#define OSM_RALT OSM(MOD_RALT)
-#define OSM_LSFT OSM(MOD_LSFT)
-#define OSM_RSFT OSM(MOD_RSFT)
+#define OS_TILD RALT(RSFT(KC_GRAVE))
+#define OS_RALT OSM(MOD_RALT)
+#define OS_LSFT OSM(MOD_LSFT)
+#define OS_RSFT OSM(MOD_RSFT)
 #define ____ KC_TRANSPARENT
 
 #define BASE   0  // Base layer - Dvorak
@@ -31,33 +31,70 @@ enum custom_keycodes {
   RGB_SLD = SAFE_RANGE, // can always be here
   TOGGLE_LAYER_COLOR,
   EPRM,
-  KC_COR_01,
-  KC_COR_02,
-  KC_COR_03,
-  KC_COR_04,
-  KC_COR_05,
-  KC_COR_06,
-  KC_COR_07,
-  KC_COR_08,
-  KC_COR_09,
-  KC_COR_10,
-  KC_COR_11,
-  KC_COR_12,
-  KC_COR_13,
-  KC_COR_14,
-  KC_COR_15,
-  KC_COR_16,
+  KC_CR_0,
+  KC_CR_1,
+  KC_CR_2,
+  KC_CR_3,
+  KC_CR_4,
+  KC_CR_5,
+  KC_CR_6,
+  KC_CR_7,
+  KC_CR_8,
+  KC_CR_9,
+  KC_CR_A,
+  KC_CR_B,
+  KC_CR_C,
+  KC_CR_D,
+  KC_CR_E,
+  KC_CR_F,
+  KC_CR_W,
 };
+/*
+#define CR_0 {172,255,255}
+#define CR_1 {86,255,255}
+#define CR_2 {0,255,255}
+#define CR_3 {43,255,255}
+#define CR_4 {172,255,128}
+#define CR_5 {86,255,128}
+#define CR_6 {21,255,255}
+#define CR_7 {215,255,128}
+#define CR_8 {129,255,255}
+#define CR_9 {215,255,255}
+#define CR_A {0,0,255}
+#define CR_B {188,154,230}
+#define CR_C {129,255,192}
+#define CR_D {0,0,0}
+#define CR_E {0,0,0}
+#define CR_F {0,0,0}
+*/
+#define CR_0 {0x00,255,255}
+#define CR_1 {0x10,255,255}
+#define CR_2 {0x20,255,255}
+#define CR_3 {0x30,255,255}
+#define CR_4 {0x40,218,255}
+#define CR_5 {0x50,255,255}
+#define CR_6 {0x60,255,255}
+#define CR_7 {0x70,255,255}
+#define CR_8 {0x80,255,255}
+#define CR_9 {0x90,255,255}
+#define CR_A {0xA0,255,255}
+#define CR_B {0xB0,255,255}
+#define CR_C {0xC0,255,255}
+#define CR_D {0xD0,255,255}
+#define CR_E {0xE0,255,255}
+#define CR_F {0xF0,255,255}
 
-
+#define C___ {0,0,0}
+#define CGRE {86,255,255}
+#define CBLU {172,255,255}
+#define CRED {0,255,255}
+#define CWHT {0,0,255}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   #include "layout_base.h"
   #include "layout_spec.h"
   #include "layout_qwer.h"
-
-  [3] = LAYOUT_ergodox(KC_TRANSPARENT,KC_F1,KC_F2,KC_F3,KC_F4,KC_F5,KC_INSERT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_PSCREEN,KC_TRANSPARENT,KC_PGUP,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_PGDOWN,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_HOME,KC_END,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_AUDIO_MUTE,KC_F6,KC_F7,KC_F8,KC_F9,KC_F10,KC_TRANSPARENT,KC_AUDIO_VOL_UP,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_F11,KC_F12,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_AUDIO_VOL_DOWN,KC_TRANSPARENT,KC_HOME,KC_UP,KC_END,KC_TRANSPARENT,KC_TRANSPARENT,KC_LEFT,KC_DOWN,KC_RIGHT,KC_TRANSPARENT,KC_RCTRL,KC_PGUP,KC_PGDOWN,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT,KC_TRANSPARENT),
-
+  #include "layout_fn.h"
 };
 
 
@@ -68,13 +105,64 @@ bool disable_layer_color = 0;
 void keyboard_post_init_user(void) {
   rgb_matrix_enable();
 }
+/*
+#define LAYOUT_ergodox(                                         \
+                                                                \
+    k00,k01,k02,k03,k04,k05,k06,                                \
+    k10,k11,k12,k13,k14,k15,k16,                                \
+    k20,k21,k22,k23,k24,k25,                                    \
+    k30,k31,k32,k33,k34,k35,k36,                                \
+    k40,k41,k42,k43,k44,                                        \
+                            k55,k56,                            \
+                                k54,                            \
+                        k51,k52,k53,                            \
+                                                                \
+        k07,k08,k09,k0A,k0B,k0C,k0D,                            \
+        k17,k18,k19,k1A,k1B,k1C,k1D,                            \
+            k28,k29,k2A,k2B,k2C,k2D,                            \
+        k37,k38,k39,k3A,k3B,k3C,k3D,                            \
+                k49,k4A,k4B,k4C,k4D,                            \
+    k57,k58,                                                    \
+    k59,                                                        \
+    k5A,k5B,k5C )                                               \
+                                                                \
+   
+   {                                                            \
+    { k00,   k01, k02, k03, k04, k05,   k06,      k07,   k08,   k09, k0A, k0B, k0C, k0D    }, \
+    { k10,   k11, k12, k13, k14, k15,   k16,      k17,   k18,   k19, k1A, k1B, k1C, k1D    }, \
+    { k20,   k21, k22, k23, k24, k25,   KC_NO,    KC_NO, k28,   k29, k2A, k2B, k2C, k2D    }, \
+    { k30,   k31, k32, k33, k34, k35,   k36,      k37,   k38,   k39, k3A, k3B, k3C, k3D    }, \
+    { k40,   k41, k42, k43, k44, KC_NO, KC_NO,    KC_NO, KC_NO, k49, k4A, k4B, k4C, k4D    }, \
+    { KC_NO, k51, k52, k53, k54, k55,   k56,      k57,   k58,   k59, k5A, k5B, k5C, KC_NO  }  \
+   }
+*/
 
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-    [1] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,255,255}, {0,0,0}, {0,0,0}, {0,255,255}, {0,255,255}, {0,255,255}, {0,255,255}, {0,0,0}, {0,255,255}, {0,0,0}, {0,255,255}, {0,0,0}, {0,0,0}, {0,255,255}, {0,0,0}, {0,255,255}, {0,0,0}, {43,255,255}, {0,255,255}, {86,255,255}, {172,255,255}, {0,0,0}, {215,255,128}, {21,255,255}, {86,255,128}, {172,255,128}, {0,0,0}, {188,154,230}, {0,0,255}, {215,255,255}, {129,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {129,255,192}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+    [SPEC] = { C___, C___, C___, C___, C___, 
+            C___, C___, C___, C___, C___,
+            C___, C___, C___, C___, C___,
+            C___, C___, C___, C___, C___,
+                  C___, C___, C___, C___, 
+            
+            CR_3, CR_2, CR_1, CR_0, C___,
+            CR_7, CR_6, CR_5, CR_4, C___,
+            CR_B, CR_A, CR_9, CR_8, C___,
+            CR_F, CR_E, CR_D, CR_C, C___,
+                  C___, CWHT, C___, C___ },
 
-    [2] = { {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {86,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+    [QWER] = { C___, C___, C___, C___, C___,
+            CGRE, CGRE, CGRE, CGRE, CGRE,
+            CGRE, CGRE, CGRE, CGRE, CGRE,
+            CGRE, CGRE, CGRE, CGRE, CGRE,
+                  C___, C___, C___, C___,
+            
+            C___, C___, C___, C___, C___,
+            CGRE, CGRE, CGRE, CGRE, CGRE,
+            CGRE, CGRE, CGRE, CGRE, CGRE,
+            CGRE, CGRE, CGRE, CGRE, CGRE,
+                  C___, C___, C___, C___ },
 
-    [3] = { {172,255,255}, {172,255,255}, {172,255,255}, {172,255,255}, {172,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {172,255,255}, {172,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {172,255,255}, {172,255,255}, {172,255,255}, {0,0,0}, {172,255,255}, {172,255,255}, {172,255,255}, {0,0,0}, {172,255,255}, {172,255,255}, {172,255,255}, {172,255,255}, {172,255,255}, {0,0,0}, {172,255,255}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0}, {0,0,0} },
+    [FN] = { CBLU, CBLU, CBLU, CBLU, CBLU, C___, C___, C___, CBLU, CBLU, C___, C___, C___, C___, C___, C___, CBLU, CBLU, CBLU, C___, CBLU, CBLU, CBLU, C___, CBLU, CBLU, CBLU, CBLU, CBLU, C___, CBLU, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___ },
 
 };
 
@@ -110,7 +198,21 @@ void rgb_matrix_indicators_user(void) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  if (keycode >= KC_CR_0 && keycode <= KC_CR_F) {
+    if (record->event.pressed) {
+      //rgblight_mode(1);
+      uint16_t i = keycode-KC_CR_0;
+      rgblight_sethsv(i*16,255,255);
+    }
+    return false;
+  }
   switch (keycode) {
+    case KC_CR_W:
+      if (record->event.pressed) {
+        //rgblight_mode(1);
+        rgblight_sethsv(0,0,255);
+      }
+      return false;
     case EPRM:
       if (record->event.pressed) {
         eeconfig_init();
@@ -122,97 +224,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
     case RGB_TOG:
-  if (record->event.pressed) {
-    if (rgb_matrix_config.val) {
-      rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 0);
-    } else {
-      rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 255);
-    }
-  }
-  return false;
+      if (record->event.pressed) {
+        if (rgb_matrix_config.val) {
+          rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 0);
+        } else {
+          rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 255);
+        }
+      }
+      return false;
     case TOGGLE_LAYER_COLOR:
       if (record->event.pressed) {
         disable_layer_color ^= 1;
       }
       return false;
-    case KC_COR_01:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(172,255,255);
-      }
-      return false;
-    case KC_COR_02:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(86,255,255);
-      }
-      return false;
-    case KC_COR_03:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(0,255,255);
-      }
-      return false;
-    case KC_COR_04:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(43,255,255);
-      }
-      return false;
-    case KC_COR_05:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(172,255,128);
-      }
-      return false;
-    case KC_COR_06:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(86,255,128);
-      }
-      return false;
-    case KC_COR_07:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(21,255,255);
-      }
-      return false;
-    case KC_COR_08:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(215,255,128);
-      }
-      return false;
-    case KC_COR_09:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(129,255,255);
-      }
-      return false;
-    case KC_COR_10:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(215,255,255);
-      }
-      return false;
-    case KC_COR_11:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(0,0,255);
-      }
-      return false;
-    case KC_COR_12:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(188,154,230);
-      }
-      return false;
-    case KC_COR_13:
-      if (record->event.pressed) {
-        rgblight_mode(1);
-        rgblight_sethsv(129,255,192);
-      }
-      return false;
+
   }
   return true;
 }
