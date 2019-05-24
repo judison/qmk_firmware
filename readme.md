@@ -2,8 +2,14 @@
 
 ## Tada 68
 
-* [Firmware](tada68_judison.bin)
+![layout](tada68_judison.png)
 
-## ErgoDox
+[KLE](http://www.keyboard-layout-editor.com/#/gists/574bd93c0e4b904562c8ac23d34c68ba) /
+[tada68_judison.bin](tada68_judison.bin)
 
-* [Firmware](ergodox_ez_judison.hex)
+## ErgoDox EZ
+
+![layout](ergodox_ez_judison.png)
+
+[KLE](http://www.keyboard-layout-editor.com/#/gists/7a722060ca57982ab3366c60d0bbf174) /
+[ergodox_ez_judison.hex](ergodox_ez_judison.hex)
