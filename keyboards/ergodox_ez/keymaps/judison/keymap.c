@@ -29,8 +29,7 @@
 
 enum custom_keycodes {
   RGB_SLD = SAFE_RANGE, // can always be here
-  TOGGLE_LAYER_COLOR,
-  EPRM,
+  RGB_LAY, // toggle layer color
   KC_CR_0,
   KC_CR_1,
   KC_CR_2,
@@ -48,30 +47,16 @@ enum custom_keycodes {
   KC_CR_E,
   KC_CR_F,
   KC_CR_W,
+  //
+  M_EMAIL,
+  M_RUBUP,
 };
-/*
-#define CR_0 {172,255,255}
-#define CR_1 {86,255,255}
-#define CR_2 {0,255,255}
-#define CR_3 {43,255,255}
-#define CR_4 {172,255,128}
-#define CR_5 {86,255,128}
-#define CR_6 {21,255,255}
-#define CR_7 {215,255,128}
-#define CR_8 {129,255,255}
-#define CR_9 {215,255,255}
-#define CR_A {0,0,255}
-#define CR_B {188,154,230}
-#define CR_C {129,255,192}
-#define CR_D {0,0,0}
-#define CR_E {0,0,0}
-#define CR_F {0,0,0}
-*/
+
 #define CR_0 {0x00,255,255}
 #define CR_1 {0x10,255,255}
 #define CR_2 {0x20,255,255}
 #define CR_3 {0x30,255,255}
-#define CR_4 {0x40,218,255}
+#define CR_4 {0x40,255,255}
 #define CR_5 {0x50,255,255}
 #define CR_6 {0x60,255,255}
 #define CR_7 {0x70,255,255}
@@ -200,7 +185,6 @@ void rgb_matrix_indicators_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (keycode >= KC_CR_0 && keycode <= KC_CR_F) {
     if (record->event.pressed) {
-      //rgblight_mode(1);
       uint16_t i = keycode-KC_CR_0;
       rgblight_sethsv(i*16,255,255);
     }
@@ -209,13 +193,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_CR_W:
       if (record->event.pressed) {
-        //rgblight_mode(1);
         rgblight_sethsv(0,0,255);
-      }
-      return false;
-    case EPRM:
-      if (record->event.pressed) {
-        eeconfig_init();
       }
       return false;
     case RGB_SLD:
@@ -232,12 +210,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       return false;
-    case TOGGLE_LAYER_COLOR:
+    case RGB_LAY:
       if (record->event.pressed) {
         disable_layer_color ^= 1;
       }
       return false;
-
+    case M_EMAIL:
+      if (record->event.pressed) {
+        SEND_STRING("judison@gmail.com");
+      }
+      return false;
+    case M_RUBUP:
+      if (record->event.pressed) {
+        SEND_STRING("root" SS_TAP(X_TAB) "123456" SS_TAP(X_ENTER));
+      }
+      return false;
   }
   return true;
 }

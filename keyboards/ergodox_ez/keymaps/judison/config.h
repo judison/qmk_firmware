@@ -9,3 +9,5 @@
 //#define DISABLE_RGB_MATRIX_JELLYBEAN_RAINDROPS
 //#define DISABLE_RGB_MATRIX_RAINDROPS
 #define EECONFIG_RGB_MATRIX (uint32_t *)16
+
+#define RGB_MATRIX_KEYPRESSES // reacts to keypresses
