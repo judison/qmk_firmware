@@ -1,19 +1,5 @@
 #include QMK_KEYBOARD_H
 #include "version.h"
-#include "keymap_german.h"
-#include "keymap_nordic.h"
-#include "keymap_french.h"
-#include "keymap_spanish.h"
-#include "keymap_hungarian.h"
-
-#define KC_MAC_UNDO LGUI(KC_Z)
-#define KC_MAC_CUT LGUI(KC_X)
-#define KC_MAC_COPY LGUI(KC_C)
-#define KC_MAC_PASTE LGUI(KC_V)
-#define KC_PC_UNDO LCTL(KC_Z)
-#define KC_PC_CUT LCTL(KC_X)
-#define KC_PC_COPY LCTL(KC_C)
-#define KC_PC_PASTE LCTL(KC_V)
 
 #define OS_TILD RALT(RSFT(KC_GRAVE))
 #define OS_RALT OSM(MOD_RALT)
@@ -122,32 +108,49 @@ void keyboard_post_init_user(void) {
    }
 */
 
+#define LEDMAP_ergodox(                                     \
+    l00,l01,l02,l03,l04,        r00,r01,r02,r03,r04,        \
+    l10,l11,l12,l13,l14,        r10,r11,r12,r13,r14,        \
+    l20,l21,l22,l23,l24,        r20,r21,r22,r23,r24,        \
+    l30,l31,l32,l33,l34,        r30,r31,r32,r33,r34,        \
+    l40,l41,l42,l43,                r41,r42,r43,r44)        \
+   {  r00, r01, r02, r03, r04, \
+      r10, r11, r12, r13, r14, \
+      r20, r21, r22, r23, r24, \
+      r30, r31, r32, r33, r34, \
+           r41, r42, r43, r44, \
+                               \
+      l04, l03, l02, l01, l00, \
+      l14, l13, l12, l11, l10, \
+      l24, l23, l22, l21, l20, \
+      l34, l33, l32, l31, l30, \
+           l43, l42, l41, l40 }
+
 const uint8_t PROGMEM ledmap[][DRIVER_LED_TOTAL][3] = {
-    [SPEC] = { C___, C___, C___, C___, C___, 
-            C___, C___, C___, C___, C___,
-            C___, C___, C___, C___, C___,
-            C___, C___, C___, C___, C___,
-                  C___, C___, C___, C___, 
-            
-            CR_3, CR_2, CR_1, CR_0, C___,
-            CR_7, CR_6, CR_5, CR_4, C___,
-            CR_B, CR_A, CR_9, CR_8, C___,
-            CR_F, CR_E, CR_D, CR_C, C___,
-                  C___, CWHT, C___, C___ },
 
-    [QWER] = { C___, C___, C___, C___, C___,
-            CGRE, CGRE, CGRE, CGRE, CGRE,
-            CGRE, CGRE, CGRE, CGRE, CGRE,
-            CGRE, CGRE, CGRE, CGRE, CGRE,
-                  C___, C___, C___, C___,
-            
-            C___, C___, C___, C___, C___,
-            CGRE, CGRE, CGRE, CGRE, CGRE,
-            CGRE, CGRE, CGRE, CGRE, CGRE,
-            CGRE, CGRE, CGRE, CGRE, CGRE,
-                  C___, C___, C___, C___ },
+    [SPEC]=LEDMAP_ergodox(
+      C___, CR_0, CR_1, CR_2, CR_3,     CRED, C___, C___, C___, C___,
+      C___, CR_4, CR_5, CR_6, CR_7,     C___, CGRE, C___, C___, C___,
+      C___, CR_8, CR_9, CR_A, CR_B,     C___, C___, CBLU, C___, C___,
+      C___, CR_C, CR_D, CR_E, CR_F,     C___, C___, C___, CWHT, C___,
+      C___, C___, CWHT, C___,                 C___, C___, C___, CR_4
+    ),
 
-    [FN] = { CBLU, CBLU, CBLU, CBLU, CBLU, C___, C___, C___, CBLU, CBLU, C___, C___, C___, C___, C___, C___, CBLU, CBLU, CBLU, C___, CBLU, CBLU, CBLU, C___, CBLU, CBLU, CBLU, CBLU, CBLU, C___, CBLU, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___, C___ },
+    [QWER]=LEDMAP_ergodox(
+      C___, C___, C___, C___, C___,     C___, C___, C___, C___, C___,
+      CGRE, CGRE, CGRE, CGRE, CGRE,     CGRE, CGRE, CGRE, CGRE, CGRE,
+      CGRE, CGRE, CGRE, CGRE, CGRE,     CGRE, CGRE, CGRE, CGRE, CGRE,
+      CGRE, CGRE, CGRE, CGRE, CGRE,     CGRE, CGRE, CGRE, CGRE, CGRE,
+      C___, C___, C___, C___,                 C___, C___, C___, C___
+    ),
+
+    [FN]=LEDMAP_ergodox(
+      CBLU, CBLU, CBLU, CBLU, CBLU,     CBLU, CBLU, CBLU, CBLU, CBLU,
+      C___, C___, C___, CBLU, C___,     C___, C___, C___, C___, C___,
+      C___, C___, C___, C___, C___,     C___, C___, C___, C___, C___,
+      C___, C___, C___, C___, C___,     C___, CBLU, CBLU, CBLU, C___,
+      C___, C___, C___, C___,                 CBLU, CBLU, CBLU, C___
+    ),
 
 };
 
