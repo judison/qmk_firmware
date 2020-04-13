@@ -309,11 +309,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
     case RGB_TOG:
       if (record->event.pressed) {
-        if (rgb_matrix_config.val) {
-          rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 0);
-        } else {
-          rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 255);
-        }
+        //if (rgb_matrix_config.val) {
+          //rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 0);
+        //} else {
+          //rgb_matrix_sethsv(rgb_matrix_config.hue, rgb_matrix_config.sat, 255);
+        //}
       }
       return false;
     case RGB_LAY:
