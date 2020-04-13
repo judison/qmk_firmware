@@ -9,9 +9,11 @@
 
 Pressionar o botao reset em baixo,
 
+
     sudo mount -t msdos /dev/sdc /media/user/TADA68
     sudo rm /media/user/TADA68/flash.bin
     sudo cp tada68_layout_ansi_mine.bin /media/user/TADA68/flash.bin
+
 
 Pressionar tecla esc (~)
 ## ErgoDox EZ
