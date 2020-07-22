@@ -1,4 +1,4 @@
-# Judison's QMK Firmwares
+``# Judison's QMK Firmwares
 
 ## Tada 68
 
@@ -14,6 +14,7 @@ Pressionar o botao reset em baixo,
     sudo rm /media/user/TADA68/flash.bin
     sudo cp tada68_layout_ansi_mine.bin /media/user/TADA68/flash.bin
 
+não funfa, vou pro windows
 
 Pressionar tecla esc (~)
 ## ErgoDox EZ
